@@ -8,8 +8,9 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
+ 
+guild_num =     eh
 
-guild_num = 
 GUILD_ID = discord.Object(id=guild_num)
 
 load_dotenv()
@@ -54,6 +55,11 @@ class MyClient(commands.Bot):
                 await message.channel.send(random.choice(jokes))
 
 client = MyClient(command_prefix="!", intents=intents)
+
+@client.tree.command(name="delete_msgs", description="Delete X amount of messages from user",guild=GUILD_ID)
+async def delete(interaction: discord.Interaction,num_msgs: str):
+    await interaction.response.send_message(num_msgs)
+    
 
 @client.tree.command(name="hello", description="say heklllo",guild=GUILD_ID)
 async def sayhello(interaction: discord.Interaction):
